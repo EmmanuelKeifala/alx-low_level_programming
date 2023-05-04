@@ -10,6 +10,6 @@ void print_binary(unsigned long int n_lng)
 	if (n_lng > 1)
 		print_binary(n_lng >> 1);
 
-	putchar((n_lng & 1) + '0');
+	_putchar((n_lng & 1) + '0');
 }
 
