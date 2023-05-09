@@ -25,7 +25,7 @@ len++;
 opn = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
 wrt = write(opn, text_content, len);
 
-if (opn == -1 || w == -1)
+if (opn == -1 || wrt== -1)
 return (-1);
 
 close(opn);
