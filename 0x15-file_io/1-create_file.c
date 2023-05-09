@@ -27,30 +27,25 @@ return (len);
  */
 int create_file(const char *filename, char *text_content)
 {
-int fd;
-int n_write;
+int opn, wrt, len = 0;
 
-if (!filename)
+if (filename == NULL)
 return (-1);
 
-fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
-if (fd == -1)
-return (-1);
-
-if (!text_content)
+if (text_content != NULL)
 {
-close(fd);
-return (1);
+for (len = 0; text_content[len];)
+len++;
 }
 
-n_write = write(fd, text_content, _strlen(text_content));
-if (n_write == -1 || n_write != _strlen(text_content))
-{
-close(fd);
-return (-1);
-}
+opn = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+wrt = write(opn, text_content, len);
 
-close(fd);
+if (opn == -1 || w == -1)
+return (-1);
+
+close(opn);
+
 return (1);
 }
 
