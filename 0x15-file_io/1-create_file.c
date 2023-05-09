@@ -1,22 +1,6 @@
 #include "main.h"
 
 /**
- * _strlen - The function _strlen determines the length of a string
- * @str: The string whose length is to be determined.
- *
- * Return: The string's length.
- */
-int _strlen(char *str)
-{
-int len;
-
-for (len = 0; str[len] != '\0'; len++)
-;
-
-return (len);
-}
-
-/**
  * create_file - Creates a file with read/write access
  * and adds content to an existing file
  * when using the create_file command.
