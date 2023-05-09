@@ -1,6 +1,22 @@
 #include "main.h"
 
 /**
+ * _strlen - string length count
+ * @str: used string
+ *
+ * Return: str length
+ */
+
+int _strlen(char *str)
+{
+	int len = 0;
+
+	while (str[len] != '\0')
+		len++;
+	return (len);
+}
+
+/**
  * append_text_to_file - Adds text to the end of a file
  * @filename: A pointer to the file's name.
  * @text_content: The string that will be appended to the end of the file.
@@ -12,25 +28,28 @@
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int o, w, len = 0;
+	int file, wrote;
 
 	if (filename == NULL)
 		return (-1);
-
+	file = open(filename, O_WRONLY | O_APPEND);
+	if (file == -1)
+		return (-1);
 	if (text_content != NULL)
 	{
-		for (len = 0; text_content[len];)
-			len++;
+		wrote = write(file, text_content, _strlen(text_content));
+		if (wrote == -1)
+		{
+			close(file);
+			return (-1);
+		}
+		close(file);
+		return (1);
 	}
-
-	o = open(filename, O_WRONLY | O_APPEND);
-	w = write(o, text_content, len);
-
-	if (o == -1 || w == -1)
-		return (-1);
-
-	close(o);
-
-	return (1);
+	else
+	{
+		close(file);
+		return (1);
+	}
 }
 
